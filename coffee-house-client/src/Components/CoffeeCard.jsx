@@ -39,8 +39,8 @@ const CoffeeCard = ({ coffee, setCoffees, coffees }) => {
       <figure>
         <img src={photo} alt={`${name} photo`} />
       </figure>
-      <div className="flex items-center px-5">
-        <div>
+      <div className="flex gap-3 items-center px-5">
+        <div className="flex-1">
           <h2 className="card-title">{name}</h2>
           <p>{details}</p>
           <p>
@@ -52,9 +52,11 @@ const CoffeeCard = ({ coffee, setCoffees, coffees }) => {
         </div>
         <div className="">
           <div className="join join-vertical ">
-            <button className="btn join-item mb-2 text-lg bg-yellow-400">
-              <AiOutlineEye></AiOutlineEye>
-            </button>
+            <Link to={`/coffee/${_id}`}>
+              <button className="btn join-item mb-2 text-lg bg-yellow-400">
+                <AiOutlineEye></AiOutlineEye>
+              </button>
+            </Link>
             <Link to={`/update-coffee/${_id}`}>
               <button className="btn join-item mb-2 text-lg bg-green-400">
                 <AiOutlineEdit></AiOutlineEdit>

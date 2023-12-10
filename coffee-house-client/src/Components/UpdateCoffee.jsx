@@ -30,8 +30,8 @@ const UpdateCoffee = () => {
     };
     console.log(newCoffee);
 
-    fetch("http://localhost:5000/coffees", {
-      method: "POST",
+    fetch(`http://localhost:5000/coffees/${loadedCoffee._id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,7 +39,8 @@ const UpdateCoffee = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.insertedId) {
+        console.log(data)
+        if (data.modifiedCount>0) {
           toast.success("Coffee updated successfully");
           form.reset();
         }

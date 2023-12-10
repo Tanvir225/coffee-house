@@ -52,6 +52,29 @@ async function run() {
         res.send(result)
     })
 
+    //PATCH OR update a single Coffee
+    app.patch("/coffees/:id",async(req,res)=>{
+      const id = req.params.id
+      const coffee = req.body
+      console.log(coffee)
+      const filter = {_id : new ObjectId(id)}
+      const options = {upsert: true}
+      const updateCoffee = {
+        $set:{
+          name:coffee.name,
+          quantity:coffee.quantity,
+          supplier:coffee.supplier,
+          price:coffee.price,
+          category: coffee.category,
+          details : coffee.details,
+          photo: coffee.photo,
+        }
+      }
+
+      const result = await coffeeCollection.updateOne(filter,updateCoffee,options)
+      res.send(result)
+    })
+
 
     //post a new coffee
     app.post("/coffees",async(req,res)=>{
